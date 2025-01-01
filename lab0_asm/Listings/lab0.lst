@@ -1,0 +1,49 @@
+A51 MACRO ASSEMBLER  LAB0                                                                 07/31/2024 21:19:37 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\lab0.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE lab0.a51 SET(SMALL) DEBUG PRINT(.\Listings\lab0.lst) OBJECT(.\Objects\l
+                      ab0.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     ORG 0
+                       2     
+                       3     ;阿良的嵌入式技術學習區LAB0:P2驅動LED閃爍
+                       4     
+0000                   5     LOOP:                  
+0000 75A000            6             MOV    P2,#0H         ; 輸出到P2埠
+0003 110C              7             CALL   DELAY100MS    ; 呼叫延遲功能副程式
+0005 75A0FF            8             MOV    P2,#0FFH         ; 輸出到P2埠
+0008 110C              9             CALL   DELAY100MS    ; 呼叫延遲功能副程式
+000A 80F4             10             JMP    LOOP
+                      11     
+                      12     ;延遲功能副程式
+000C                  13     DELAY100MS:
+000C 7ED9             14            MOV   R6,#217  ; 1 cycle  
+000E                  15     D1:
+000E 7DFA             16            MOV   R5, #250 ; 1 cycle * 200
+0010 DDFE             17            DJNZ  R5, $    ; 2 cycle * 250 *217 
+0012 DEFA             18            DJNZ  R6, D1   ; 2 cycle * 200 
+0014 22               19            RET            ; 2 cycle  
+                      20     
+                      21     END
+A51 MACRO ASSEMBLER  LAB0                                                                 07/31/2024 21:19:37 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+D1 . . . . . . . .  C ADDR   000EH   A   
+DELAY100MS . . . .  C ADDR   000CH   A   
+LOOP . . . . . . .  C ADDR   0000H   A   
+P2 . . . . . . . .  D ADDR   00A0H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

@@ -1,0 +1,3 @@
+".\Objects\lab0.obj" 
+TO ".\Objects\lab0_asm" 
+PRINT(".\Listings\lab0_asm.m51")
